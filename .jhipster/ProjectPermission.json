@@ -1,0 +1,39 @@
+{
+    "name": "ProjectPermission",
+    "fields": [
+        {
+            "fieldName": "permission",
+            "fieldType": "TypePermission",
+            "fieldValues": "READ,READ_WRITE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "projectPermission"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "otherEntityField": "value",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "projectPermission"
+        }
+    ],
+    "changelogDate": "20181107024425",
+    "entityTableName": "project_permission",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "labtel"
+    ]
+}

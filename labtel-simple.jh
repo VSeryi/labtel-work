@@ -1,0 +1,70 @@
+enum TypePermission {
+	READ, READ_WRITE
+}
+
+enum TypeItem {
+	INDIVIDUAL, GROUP
+}
+
+entity Category {
+    name String
+}
+
+entity Item {
+    value String,
+    type TypeItem
+}
+
+entity ProjectItem {
+	quantity Integer
+}
+
+entity Project {
+    value String
+}
+
+entity ProjectPermission {
+	permission TypePermission
+}
+
+relationship ManyToOne {
+  Item{category(name)} to Category
+}
+
+relationship ManyToMany {
+  ProjectItem{item(value)} to Item
+}
+
+relationship ManyToMany {
+  Item{element(value)} to Item
+}
+
+relationship OneToMany {
+  Project{item(item)} to ProjectItem
+}
+
+relationship OneToOne {
+  ProjectPermission{user(login)} to User
+}
+
+relationship OneToOne {
+  ProjectPermission{project(value)} to Project
+}
+
+application {
+  config {
+    baseName labtel
+    languages [es, en]
+    nativeLanguage es
+    packageName es.urjc.etsii.labtel
+    searchEngine elasticsearch
+    skipUserManagement false
+    useSass true
+  }
+  entities *
+}
+
+paginate * with pagination
+dto * with mapstruct
+service * with serviceClass
+	

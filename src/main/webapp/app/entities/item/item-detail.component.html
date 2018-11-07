@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="item">
+            <h2><span jhiTranslate="labtelApp.item.detail.title">Item</span> {{item.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labtelApp.item.value">Value</span></dt>
+                <dd>
+                    <span>{{item.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="labtelApp.item.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'labtelApp.TypeItem.' + item.type}}">{{item.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="labtelApp.item.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="item.categoryId">
+                        <a [routerLink]="['/category', item.categoryId, 'view']">{{item.categoryName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labtelApp.item.element">Element</span></dt>
+                <dd>
+                    <span *ngFor="let element of item.elements; let last = last">
+                        <a [routerLink]="['/item', element?.id, 'view' ]">{{element.value}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/item', item.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

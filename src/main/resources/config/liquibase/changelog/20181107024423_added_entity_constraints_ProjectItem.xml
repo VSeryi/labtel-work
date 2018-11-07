@@ -8,17 +8,12 @@
     -->
     <changeSet id="20181107024423-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="project_items_id"
-                                 baseTableName="project_item_item"
-                                 constraintName="fk_project_item_item_project_items_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="project_item"/>
-        <addForeignKeyConstraint baseColumnNames="items_id"
-                                 baseTableName="project_item_item"
-                                 constraintName="fk_project_item_item_items_id"
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="project_item"
+                                 constraintName="fk_project_item_item_id"
                                  referencedColumnNames="id"
                                  referencedTableName="item"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="project_id"
                                  baseTableName="project_item"
                                  constraintName="fk_project_item_project_id"

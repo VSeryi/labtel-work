@@ -11,9 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {ItemMapper.class, ProjectMapper.class})
 public interface ProjectItemMapper extends EntityMapper<ProjectItemDTO, ProjectItem> {
 
+    @Mapping(source = "item.id", target = "itemId")
+    @Mapping(source = "item.value", target = "itemValue")
     @Mapping(source = "project.id", target = "projectId")
     ProjectItemDTO toDto(ProjectItem projectItem);
 
+    @Mapping(source = "itemId", target = "item")
     @Mapping(source = "projectId", target = "project")
     ProjectItem toEntity(ProjectItemDTO projectItemDTO);
 

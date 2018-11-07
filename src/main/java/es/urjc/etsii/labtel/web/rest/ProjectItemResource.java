@@ -88,20 +88,14 @@ public class ProjectItemResource {
      * GET  /project-items : get all the projectItems.
      *
      * @param pageable the pagination information
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of projectItems in body
      */
     @GetMapping("/project-items")
     @Timed
-    public ResponseEntity<List<ProjectItemDTO>> getAllProjectItems(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<ProjectItemDTO>> getAllProjectItems(Pageable pageable) {
         log.debug("REST request to get a page of ProjectItems");
-        Page<ProjectItemDTO> page;
-        if (eagerload) {
-            page = projectItemService.findAllWithEagerRelationships(pageable);
-        } else {
-            page = projectItemService.findAll(pageable);
-        }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/project-items?eagerload=%b", eagerload));
+        Page<ProjectItemDTO> page = projectItemService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/project-items");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

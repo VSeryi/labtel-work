@@ -31,7 +31,7 @@ relationship ManyToOne {
   Item{category(name)} to Category
 }
 
-relationship ManyToMany {
+relationship ManyToOne {
   ProjectItem{item(value)} to Item
 }
 

@@ -13,7 +13,6 @@ import es.urjc.etsii.labtel.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +27,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,14 +54,8 @@ public class ProjectItemResourceIntTest {
     @Autowired
     private ProjectItemRepository projectItemRepository;
 
-    @Mock
-    private ProjectItemRepository projectItemRepositoryMock;
-
     @Autowired
     private ProjectItemMapper projectItemMapper;
-
-    @Mock
-    private ProjectItemService projectItemServiceMock;
 
     @Autowired
     private ProjectItemService projectItemService;
@@ -179,39 +171,6 @@ public class ProjectItemResourceIntTest {
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllProjectItemsWithEagerRelationshipsIsEnabled() throws Exception {
-        ProjectItemResource projectItemResource = new ProjectItemResource(projectItemServiceMock);
-        when(projectItemServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        MockMvc restProjectItemMockMvc = MockMvcBuilders.standaloneSetup(projectItemResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restProjectItemMockMvc.perform(get("/api/project-items?eagerload=true"))
-        .andExpect(status().isOk());
-
-        verify(projectItemServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllProjectItemsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        ProjectItemResource projectItemResource = new ProjectItemResource(projectItemServiceMock);
-            when(projectItemServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restProjectItemMockMvc = MockMvcBuilders.standaloneSetup(projectItemResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restProjectItemMockMvc.perform(get("/api/project-items?eagerload=true"))
-        .andExpect(status().isOk());
-
-            verify(projectItemServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getProjectItem() throws Exception {

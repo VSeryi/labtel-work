@@ -8,8 +8,6 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,12 +28,9 @@ public class ProjectItem implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "project_item_item",
-               joinColumns = @JoinColumn(name = "project_items_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "items_id", referencedColumnName = "id"))
-    private Set<Item> items = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private Item item;
 
     @ManyToOne
     @JsonIgnoreProperties("items")
@@ -63,27 +58,17 @@ public class ProjectItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
-    public ProjectItem items(Set<Item> items) {
-        this.items = items;
+    public ProjectItem item(Item item) {
+        this.item = item;
         return this;
     }
 
-    public ProjectItem addItem(Item item) {
-        this.items.add(item);
-        return this;
-    }
-
-    public ProjectItem removeItem(Item item) {
-        this.items.remove(item);
-        return this;
-    }
-
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Project getProject() {

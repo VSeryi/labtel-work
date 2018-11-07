@@ -11,9 +11,9 @@
                 </dd>
                 <dt><span jhiTranslate="labtelApp.projectItem.item">Item</span></dt>
                 <dd>
-                    <span *ngFor="let item of projectItem.items; let last = last">
-                        <a [routerLink]="['/item', item?.id, 'view' ]">{{item.value}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <div *ngIf="projectItem.itemId">
+                        <a [routerLink]="['/item', projectItem.itemId, 'view']">{{projectItem.itemValue}}</a>
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="labtelApp.projectItem.project">Project</span></dt>
                 <dd>

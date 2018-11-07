@@ -1,8 +1,6 @@
 package es.urjc.etsii.labtel.service.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -14,7 +12,9 @@ public class ProjectItemDTO implements Serializable {
 
     private Integer quantity;
 
-    private Set<ItemDTO> items = new HashSet<>();
+    private Long itemId;
+
+    private String itemValue;
 
     private Long projectId;
 
@@ -34,12 +34,20 @@ public class ProjectItemDTO implements Serializable {
         this.quantity = quantity;
     }
 
-    public Set<ItemDTO> getItems() {
-        return items;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public void setItems(Set<ItemDTO> items) {
-        this.items = items;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemValue() {
+        return itemValue;
+    }
+
+    public void setItemValue(String itemValue) {
+        this.itemValue = itemValue;
     }
 
     public Long getProjectId() {
@@ -76,6 +84,8 @@ public class ProjectItemDTO implements Serializable {
         return "ProjectItemDTO{" +
             "id=" + getId() +
             ", quantity=" + getQuantity() +
+            ", item=" + getItemId() +
+            ", item='" + getItemValue() + "'" +
             ", project=" + getProjectId() +
             "}";
     }

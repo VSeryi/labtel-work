@@ -1,6 +1,9 @@
 package es.urjc.etsii.labtel.repository;
 
 import es.urjc.etsii.labtel.domain.Item;
+import es.urjc.etsii.labtel.domain.enumeration.TypeItem;
+import es.urjc.etsii.labtel.service.dto.ItemDTO;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -26,5 +29,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query("select item from Item item left join fetch item.elements where item.id =:id")
     Optional<Item> findOneWithEagerRelationships(@Param("id") Long id);
+
+	Page<Item> findAllByType(TypeItem type, Pageable pageable);
+
+    @Query(value = "select distinct item from Item item left join item.elements where item.type  =:type")
+	Page<Item> findAllByTypeWithEagerRelationships(TypeItem type, Pageable pageable);
 
 }

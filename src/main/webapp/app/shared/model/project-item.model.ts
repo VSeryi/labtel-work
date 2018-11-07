@@ -1,12 +1,17 @@
-import { IItem } from 'app/shared/model//item.model';
-
 export interface IProjectItem {
     id?: number;
     quantity?: number;
-    items?: IItem[];
+    itemValue?: string;
+    itemId?: number;
     projectId?: number;
 }
 
 export class ProjectItem implements IProjectItem {
-    constructor(public id?: number, public quantity?: number, public items?: IItem[], public projectId?: number) {}
+    constructor(
+        public id?: number,
+        public quantity?: number,
+        public itemValue?: string,
+        public itemId?: number,
+        public projectId?: number
+    ) {}
 }

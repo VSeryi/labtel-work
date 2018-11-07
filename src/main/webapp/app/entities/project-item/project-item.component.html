@@ -31,6 +31,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="quantity"><span jhiTranslate="labtelApp.projectItem.quantity">Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="itemValue"><span jhiTranslate="labtelApp.projectItem.item">Item</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="projectId"><span jhiTranslate="labtelApp.projectItem.project">Project</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -39,6 +40,11 @@
             <tr *ngFor="let projectItem of projectItems ;trackBy: trackId">
                 <td><a [routerLink]="['/project-item', projectItem.id, 'view' ]">{{projectItem.id}}</a></td>
                 <td>{{projectItem.quantity}}</td>
+                <td>
+                    <div *ngIf="projectItem.itemId">
+                        <a [routerLink]="['../item', projectItem.itemId , 'view' ]" >{{projectItem.itemValue}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="projectItem.projectId">
                         <a [routerLink]="['../project', projectItem.projectId , 'view' ]" >{{projectItem.projectId}}</a>

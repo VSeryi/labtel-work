@@ -8,12 +8,10 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "",
+            "relationshipType": "many-to-one",
             "relationshipName": "item",
             "otherEntityName": "item",
-            "otherEntityField": "value",
-            "ownerSide": true
+            "otherEntityField": "value"
         },
         {
             "relationshipName": "project",

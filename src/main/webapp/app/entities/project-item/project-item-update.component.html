@@ -16,9 +16,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="labtelApp.projectItem.item" for="field_item">Item</label>
-                    <select class="form-control" id="field_item" multiple name="item" [(ngModel)]="projectItem.items">
-                        <option [ngValue]="getSelected(projectItem.items, itemOption)" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.value}}</option>
+                    <label class="form-control-label" jhiTranslate="labtelApp.projectItem.item" for="field_item">Item</label>
+                    <select class="form-control" id="field_item" name="item" [(ngModel)]="projectItem.itemId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.value}}</option>
                     </select>
                 </div>
                 <div class="form-group">

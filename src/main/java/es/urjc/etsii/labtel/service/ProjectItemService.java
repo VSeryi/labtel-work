@@ -67,15 +67,6 @@ public class ProjectItemService {
             .map(projectItemMapper::toDto);
     }
 
-    /**
-     * Get all the ProjectItem with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    public Page<ProjectItemDTO> findAllWithEagerRelationships(Pageable pageable) {
-        return projectItemRepository.findAllWithEagerRelationships(pageable).map(projectItemMapper::toDto);
-    }
-    
 
     /**
      * Get one projectItem by id.
@@ -86,7 +77,7 @@ public class ProjectItemService {
     @Transactional(readOnly = true)
     public Optional<ProjectItemDTO> findOne(Long id) {
         log.debug("Request to get ProjectItem : {}", id);
-        return projectItemRepository.findOneWithEagerRelationships(id)
+        return projectItemRepository.findById(id)
             .map(projectItemMapper::toDto);
     }
 

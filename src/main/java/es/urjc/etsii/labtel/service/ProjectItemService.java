@@ -40,8 +40,8 @@ public class ProjectItemService {
      */
     public ProjectItemDTO save(ProjectItemDTO projectItemDTO) {
         log.debug("Request to save ProjectItem : {}", projectItemDTO);
-
         ProjectItem projectItem = projectItemMapper.toEntity(projectItemDTO);
+        addToProject(projectItem);
         projectItem = projectItemRepository.save(projectItem);
         return projectItemMapper.toDto(projectItem);
     }
@@ -81,5 +81,10 @@ public class ProjectItemService {
     public void delete(Long id) {
         log.debug("Request to delete ProjectItem : {}", id);
         projectItemRepository.deleteById(id);
+    }
+    
+    private void addToProject(ProjectItem projectItem) {
+    	projectItem.getProject().addItem(projectItem);
+    	
     }
 }

@@ -12,6 +12,7 @@ import { ProjectItemDetailComponent } from './project-item-detail.component';
 import { ProjectItemUpdateComponent } from './project-item-update.component';
 import { ProjectItemDeletePopupComponent } from './project-item-delete-dialog.component';
 import { IProjectItem } from 'app/shared/model/project-item.model';
+import { ProjectResolve } from '../project';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectItemResolve implements Resolve<IProjectItem> {
@@ -19,7 +20,8 @@ export class ProjectItemResolve implements Resolve<IProjectItem> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProjectItem> {
         const id = route.params['id'] ? route.params['id'] : null;
-        if (id) {
+        const isNew = route.url.join('').includes('new');
+        if (id && !isNew) {
             return this.service.find(id).pipe(
                 filter((response: HttpResponse<ProjectItem>) => response.ok),
                 map((projectItem: HttpResponse<ProjectItem>) => projectItem.body)
@@ -48,6 +50,19 @@ export const projectItemRoute: Routes = [
         component: ProjectItemDetailComponent,
         resolve: {
             projectItem: ProjectItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.projectItem.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'project-item/:id/new',
+        component: ProjectItemUpdateComponent,
+        resolve: {
+            projectItem: ProjectItemResolve,
+            project: ProjectResolve
         },
         data: {
             authorities: ['ROLE_USER'],

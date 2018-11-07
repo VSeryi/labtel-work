@@ -29,7 +29,7 @@ public class Project implements Serializable {
     private String value;
 
     @OneToMany(mappedBy = "project")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
     private Set<ProjectItem> items = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

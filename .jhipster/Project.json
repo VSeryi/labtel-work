@@ -1,28 +1,25 @@
 {
-    "name": "Project",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "item",
+            "otherEntityName": "projectItem",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "project"
+        }
+    ],
     "fields": [
         {
             "fieldName": "value",
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "item",
-            "otherEntityName": "projectItem",
-            "otherEntityRelationshipName": "project"
-        }
-    ],
     "changelogDate": "20181107024424",
-    "entityTableName": "project",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceClass",
+    "entityTableName": "project",
     "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": [
-        "labtel"
-    ]
+    "pagination": "pagination"
 }

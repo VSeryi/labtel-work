@@ -38,13 +38,6 @@ public class CacheConfiguration {
             cm.createCache(es.urjc.etsii.labtel.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(es.urjc.etsii.labtel.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(es.urjc.etsii.labtel.domain.User.class.getName() + ".authorities", jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.Category.class.getName(), jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.Item.class.getName(), jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.Item.class.getName() + ".elements", jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.ProjectItem.class.getName(), jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.Project.class.getName(), jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.Project.class.getName() + ".items", jcacheConfiguration);
-            cm.createCache(es.urjc.etsii.labtel.domain.ProjectPermission.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

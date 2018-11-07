@@ -15,7 +15,7 @@
     "packageName": "es.urjc.etsii.labtel",
     "packageFolder": "es/urjc/etsii/labtel",
     "prodDatabaseType": "mysql",
-    "searchEngine": "elasticsearch",
+    "searchEngine": false,
     "serviceDiscoveryType": false,
     "skipClient": false,
     "skipServer": false,

@@ -57,7 +57,7 @@ application {
     languages [es, en]
     nativeLanguage es
     packageName es.urjc.etsii.labtel
-    searchEngine elasticsearch
+    searchEngine false
     skipUserManagement false
     useSass true
   }

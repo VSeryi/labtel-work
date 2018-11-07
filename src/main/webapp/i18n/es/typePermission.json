@@ -1,9 +1,0 @@
-{
-    "labtelApp": {
-        "TypePermission": {
-            "null": "",
-            "READ": "READ",
-            "READ_WRITE": "READ_WRITE"
-        }
-    }
-}

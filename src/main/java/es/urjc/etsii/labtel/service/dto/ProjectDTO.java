@@ -1,6 +1,7 @@
 package es.urjc.etsii.labtel.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,6 +12,8 @@ public class ProjectDTO implements Serializable {
     private Long id;
 
     private String value;
+    
+    private List<ProjectItemDTO> items;
 
     public Long getId() {
         return id;
@@ -28,7 +31,15 @@ public class ProjectDTO implements Serializable {
         this.value = value;
     }
 
-    @Override
+    public List<ProjectItemDTO> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ProjectItemDTO> items) {
+		this.items = items;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

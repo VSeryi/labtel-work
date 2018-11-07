@@ -30,6 +30,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    type: string;
 
     constructor(
         private itemService: ItemService,
@@ -46,6 +47,7 @@ export class ItemComponent implements OnInit, OnDestroy {
             this.previousPage = data.pagingParams.page;
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
+            this.type = data.type;
         });
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -57,6 +59,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         if (this.currentSearch) {
             this.itemService
                 .search({
+                    type: this.type,
                     page: this.page - 1,
                     query: this.currentSearch,
                     size: this.itemsPerPage,
@@ -70,6 +73,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         }
         this.itemService
             .query({
+                type: this.type,
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()

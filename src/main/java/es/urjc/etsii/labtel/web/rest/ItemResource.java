@@ -1,6 +1,8 @@
 package es.urjc.etsii.labtel.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
+import es.urjc.etsii.labtel.domain.enumeration.TypeItem;
 import es.urjc.etsii.labtel.service.ItemService;
 import es.urjc.etsii.labtel.web.rest.errors.BadRequestAlertException;
 import es.urjc.etsii.labtel.web.rest.util.HeaderUtil;
@@ -93,13 +95,13 @@ public class ItemResource {
      */
     @GetMapping("/items")
     @Timed
-    public ResponseEntity<List<ItemDTO>> getAllItems(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<ItemDTO>> getAllItems(@RequestParam(required = false) TypeItem type, Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Items");
         Page<ItemDTO> page;
         if (eagerload) {
-            page = itemService.findAllWithEagerRelationships(pageable);
+            page = (type != null) ? itemService.findAllByTypeWithEagerRelationships(type, pageable) : itemService.findAllWithEagerRelationships(pageable);
         } else {
-            page = itemService.findAll(pageable);
+            page = (type != null) ? itemService.findAllByType(type, pageable) : itemService.findAll(pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/items?eagerload=%b", eagerload));
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -143,7 +145,7 @@ public class ItemResource {
      */
     @GetMapping("/_search/items")
     @Timed
-    public ResponseEntity<List<ItemDTO>> searchItems(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<ItemDTO>> searchItems(@RequestParam String type, @RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Items for query {}", query);
         Page<ItemDTO> page = itemService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/items");

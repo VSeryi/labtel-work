@@ -18,8 +18,17 @@
                     </span>
                 </a>
             </li>
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="project"  (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                        <span jhiTranslate="global.menu.entities.project">Project</span>
+                    </span>
+                </a>
+            </li>
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon [icon]="'th-list'"></fa-icon>
@@ -36,21 +45,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="item/individual" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.item">Item</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="project-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="item/group" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.projectItem">Project Item</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="project" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.project">Project</span>
+                            <span jhiTranslate="global.menu.entities.item">Item</span>
                         </a>
                     </li>
                     <li>

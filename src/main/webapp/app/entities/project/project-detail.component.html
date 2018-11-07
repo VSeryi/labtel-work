@@ -10,53 +10,6 @@
                     <span>{{project.value}}</span>
                 </dd>
             </dl>
-            <button id="jh-create-entity" class="btn btn-primary jh-create-entity create-project-item" [routerLink]="['/project-item',project.id, 'new']">
-                <fa-icon [icon]="'plus'"></fa-icon>
-                <span class="hidden-sm-down"  jhiTranslate="labtelApp.projectItem.home.createLabel">
-                Create new Item
-                </span>
-            </button>
-            <br><br>
-            <div class="accordion" id="accordionItems">
-                <div class="card" *ngFor="let projectItem of project.items; index as i">
-                  <div class="card-body">
-                      <div class="row">
-                          <div class="col">
-                                {{projectItem.itemValue}}
-                          </div>
-                          <div class="col">
-                                {{projectItem.quantity}} unidades
-                          </div>
-                          <div class="col">
-                                <button type="submit"
-                                [routerLink]="['/project-item', projectItem.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-                            <button type="submit"
-                                    [routerLink]="['/project-item', projectItem.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-                            <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'project-item/'+ projectItem.id + '/delete'} }]"
-                                    replaceUrl="true"
-                                     queryParamsHandling="merge"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon [icon]="'times'"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                          </div>
-                          
-                      </div>
-                    
-                  </div>
-                </div>
-            </div>
-            <br>
-
 
             <button type="submit"
                     (click)="previousState()"

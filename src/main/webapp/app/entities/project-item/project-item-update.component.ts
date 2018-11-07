@@ -23,8 +23,6 @@ export class ProjectItemUpdateComponent implements OnInit {
 
     projects: IProject[];
 
-    project: IProject;
-
     constructor(
         private jhiAlertService: JhiAlertService,
         private projectItemService: ProjectItemService,
@@ -38,12 +36,6 @@ export class ProjectItemUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ projectItem }) => {
             this.projectItem = projectItem;
         });
-
-        this.activatedRoute.data.subscribe(({ project }) => {
-            this.project = project;
-            this.projectItem.projectId = this.project.id;
-        });
-
         this.itemService.query().subscribe(
             (res: HttpResponse<IItem[]>) => {
                 this.items = res.body;

@@ -29,7 +29,6 @@ export class ItemComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-    type: string;
 
     constructor(
         private itemService: ItemService,
@@ -46,14 +45,12 @@ export class ItemComponent implements OnInit, OnDestroy {
             this.previousPage = data.pagingParams.page;
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
-            this.type = data.type;
         });
     }
 
     loadAll() {
         this.itemService
             .query({
-                type: this.type,
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()

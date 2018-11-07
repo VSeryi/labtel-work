@@ -1,7 +1,6 @@
 package es.urjc.etsii.labtel.service;
 
 import es.urjc.etsii.labtel.domain.Project;
-import es.urjc.etsii.labtel.domain.ProjectItem;
 import es.urjc.etsii.labtel.repository.ProjectRepository;
 import es.urjc.etsii.labtel.service.dto.ProjectDTO;
 import es.urjc.etsii.labtel.service.mapper.ProjectMapper;

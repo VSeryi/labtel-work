@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labtelApp.projectItem.project" for="field_project">Project</label>
-                    <select [disabled]='project' class="form-control" id="field_project" name="project" [(ngModel)]="projectItem.projectId" >
+                    <select class="form-control" id="field_project" name="project" [(ngModel)]="projectItem.projectId" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="projectOption.id" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.id}}</option>
                     </select>

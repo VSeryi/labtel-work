@@ -44,34 +44,6 @@ export const itemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'item/group',
-        component: ItemComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            defaultSort: 'id,asc',
-            pageTitle: 'labtelApp.item.home.title',
-            type: 'GROUP'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
-        path: 'item/individual',
-        component: ItemComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            defaultSort: 'id,asc',
-            pageTitle: 'labtelApp.item.home.title',
-            type: 'INDIVIDUAL'
-        },
-        canActivate: [UserRouteAccessService]
-    },
-    {
         path: 'item/:id/view',
         component: ItemDetailComponent,
         resolve: {

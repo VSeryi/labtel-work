@@ -1,7 +1,6 @@
 package es.urjc.etsii.labtel.service;
 
 import es.urjc.etsii.labtel.domain.Item;
-import es.urjc.etsii.labtel.domain.enumeration.TypeItem;
 import es.urjc.etsii.labtel.repository.ItemRepository;
 import es.urjc.etsii.labtel.service.dto.ItemDTO;
 import es.urjc.etsii.labtel.service.mapper.ItemMapper;
@@ -59,19 +58,6 @@ public class ItemService {
         return itemRepository.findAll(pageable)
             .map(itemMapper::toDto);
     }
-    
-    /**
-     * Get all the items.
-     *
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<ItemDTO> findAllByType(TypeItem type, Pageable pageable) {
-        log.debug("Request to get all Items");
-        return itemRepository.findAllByType(type, pageable)
-            .map(itemMapper::toDto);
-    }
 
     /**
      * Get all the Item with eager load of many-to-many relationships.
@@ -80,15 +66,6 @@ public class ItemService {
      */
     public Page<ItemDTO> findAllWithEagerRelationships(Pageable pageable) {
         return itemRepository.findAllWithEagerRelationships(pageable).map(itemMapper::toDto);
-    }
-    
-    /**
-     * Get all the Item with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    public Page<ItemDTO> findAllByTypeWithEagerRelationships(TypeItem type, Pageable pageable) {
-        return itemRepository.findAllByTypeWithEagerRelationships(type, pageable).map(itemMapper::toDto);
     }
     
 

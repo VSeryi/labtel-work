@@ -40,7 +40,7 @@ relationship ManyToMany {
 }
 
 relationship OneToMany {
-  Project{item(item)} to ProjectItem
+  Project{item} to ProjectItem
 }
 
 relationship OneToOne {

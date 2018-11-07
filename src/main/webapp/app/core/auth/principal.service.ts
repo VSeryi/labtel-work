@@ -7,6 +7,7 @@ import { AccountService } from './account.service';
 @Injectable({ providedIn: 'root' })
 export class Principal {
     private userIdentity: any;
+    private permissions: any;
     private authenticated = false;
     private authenticationState = new Subject<any>();
 
@@ -55,6 +56,21 @@ export class Principal {
         );
     }
 
+    hasWritePermission(projectId: number): Promise<boolean> {
+        if (!this.authenticated) {
+            return Promise.resolve(false);
+        }
+        return this.identity().then(
+            id => {
+                return Promise.resolve(id.authorities && id.authorities.includes('ROLE_ADMIN')
+                    || this.isWrite(this.permissions.find(p => p.projectId == projectId)));
+            },
+            () => {
+                return Promise.resolve(false);
+            }
+        );
+    }
+
     identity(force?: boolean): Promise<any> {
         if (force === true) {
             this.userIdentity = undefined;
@@ -67,15 +83,20 @@ export class Principal {
         }
 
         // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-        return this.account
+        return Promise.all([this.account
             .get()
-            .toPromise()
+            .toPromise(),
+            this.account
+                .permissions()
+                .toPromise()])
             .then(response => {
-                const account = response.body;
+                const account = response[0].body;
+                const permissions = response[1].body;
+
                 if (account) {
                     this.userIdentity = account;
                     this.authenticated = true;
-
+                    this.permissions = permissions;
                     // After retrieve the account info, the language will be changed to
                     // the user's preferred language configured in the account setting
                     const langKey = this.sessionStorage.retrieve('locale') || this.userIdentity.langKey;
@@ -109,5 +130,9 @@ export class Principal {
 
     getImageUrl(): string {
         return this.isIdentityResolved() ? this.userIdentity.imageUrl : null;
+    }
+
+    private isWrite(permission: any) {
+        return permission && permission.permission === 'READ_WRITE';
     }
 }

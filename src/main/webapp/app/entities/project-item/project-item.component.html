@@ -27,7 +27,7 @@
                 <td>{{projectItem.quantity}}</td>
                 <td>
                     <div *ngIf="projectItem.itemId">
-                        <a [routerLink]="['../item', projectItem.itemId , 'view' ]" >{{projectItem.itemValue}}</a>
+                        <a [routerLink]="['../project', projectItem.projectId, 'item', projectItem.itemId , 'view' ]" >{{projectItem.itemValue}}</a>
                     </div>
                 </td>
                 <td>

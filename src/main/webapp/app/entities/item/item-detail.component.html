@@ -9,10 +9,8 @@
                 <dd>
                     <span>{{item.value}}</span>
                 </dd>
-                <dt><span jhiTranslate="labtelApp.item.type">Type</span></dt>
-
-                <dt><span jhiTranslate="labtelApp.item.category">Category</span></dt>
-                <dd>
+                <dt *ngIf="item.type == 'INDIVIDUAL'" ><span jhiTranslate="labtelApp.item.category">Category</span></dt>
+                <dd *ngIf="item.type == 'INDIVIDUAL'">
                     <div *ngIf="item.categoryId">
                         <a [routerLink]="['/category', item.categoryId, 'view']">{{item.categoryName}}</a>
                     </div>
@@ -31,11 +29,21 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/item', item.id, 'edit']"
+            <span *ngIf="item.type == 'INDIVIDUAL'">
+                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                    [routerLink]="['/item/individual', item.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+                </button>
+            </span>
+
+            <span *ngIf="item.type !== 'INDIVIDUAL' && projectId">
+                    <button *jhiHasWritePermission="projectId" type="button"
+                        [routerLink]="['/item/group', item.id, 'edit']"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                    </button>
+            </span>
         </div>
     </div>
 </div>

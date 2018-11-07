@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="labtelApp.projectItem.item">Item</span></dt>
                 <dd>
                     <div *ngIf="projectItem.itemId">
-                        <a [routerLink]="['/item', projectItem.itemId, 'view']">{{projectItem.itemValue}}</a>
+                        <a [routerLink]="['/project', projectItem.projectId, 'item', projectItem.itemId, 'view']">{{projectItem.itemValue}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="labtelApp.projectItem.project">Project</span></dt>
@@ -29,7 +29,7 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasWritePermission="projectItem.projectId" type="button"
                     [routerLink]="['/project-item', projectItem.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>

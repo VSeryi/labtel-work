@@ -14,6 +14,49 @@
                     <input type="text" class="form-control" name="value" id="field_value"
                         [(ngModel)]="project.value" />
                 </div>
+
+                <div class="form-group" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <span  *ngIf='project.id'>
+                    <h5>Permissions</h5>
+                    <div class="row">
+                        <div class="col">
+                                <label class="form-control-label" jhiTranslate="labtelApp.projectPermission.user" for="field_user">User</label>
+                                <select class="form-control" id="field_user" name="user" [(ngModel)]="newUser" >
+                                    <option [ngValue]="userOption" *ngFor="let userOption of usersFiltered; trackBy: trackUserById">{{userOption.login}}</option>
+                                </select>
+                        </div>
+                        <div class="col">
+                            <label class="form-control-label" jhiTranslate="labtelApp.projectPermission.permission" for="field_permission">Permission</label>
+                            <select class="form-control" name="permission" [(ngModel)]="newPermission" id="field_permission" >
+                                <option value="READ">{{'labtelApp.TypePermission.READ' | translate}}</option>
+                                <option value="READ_WRITE">{{'labtelApp.TypePermission.READ_WRITE' | translate}}</option>
+                            </select>
+                        </div>
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="addPermission()">
+                                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Add</span>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+                                        <th>User</th>
+                                        <th>Permission</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let permission of permissions ;trackBy: trackId">
+                                            <td>{{permission.userLogin}}</td>    
+                                            <td>{{permission.permission}}</td>    
+                                            <td>                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="deletePermission(permission)">
+                                                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Delete</span>
+                                                </button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </span>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

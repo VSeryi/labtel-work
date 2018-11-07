@@ -84,6 +84,18 @@ export const itemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
+        path: 'project/:projectId/item/:id/view',
+        component: ItemDetailComponent,
+        resolve: {
+            item: ItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.item.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'item/new',
         component: ItemUpdateComponent,
         resolve: {

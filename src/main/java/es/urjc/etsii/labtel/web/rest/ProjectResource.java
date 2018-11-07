@@ -1,6 +1,8 @@
 package es.urjc.etsii.labtel.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
+import es.urjc.etsii.labtel.security.SecurityUtils;
 import es.urjc.etsii.labtel.service.ProjectService;
 import es.urjc.etsii.labtel.web.rest.errors.BadRequestAlertException;
 import es.urjc.etsii.labtel.web.rest.util.HeaderUtil;
@@ -91,7 +93,12 @@ public class ProjectResource {
     @Timed
     public ResponseEntity<List<ProjectDTO>> getAllProjects(Pageable pageable) {
         log.debug("REST request to get a page of Projects");
-        Page<ProjectDTO> page = projectService.findAll(pageable);
+        Page<ProjectDTO> page;
+        if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN")) {
+           page = projectService.findAll(pageable);
+        } else {
+        	page = projectService.findAllByPermission(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

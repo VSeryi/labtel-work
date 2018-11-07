@@ -10,7 +10,7 @@
                     <span>{{project.value}}</span>
                 </dd>
             </dl>
-            <button id="jh-create-entity" class="btn btn-primary jh-create-entity create-project-item" [routerLink]="['/project-item',project.id, 'new']">
+            <button *jhiHasWritePermission="project.id" id="jh-create-entity" class="btn btn-primary jh-create-entity create-project-item" [routerLink]="['/project-item',project.id, 'new']">
                 <fa-icon [icon]="'plus'"></fa-icon>
                 <span class="hidden-sm-down"  jhiTranslate="labtelApp.projectItem.home.createLabel">
                 Create new Item
@@ -34,13 +34,13 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
-                            <button type="submit"
+                            <button *jhiHasWritePermission="project.id" type="submit"
                                     [routerLink]="['/project-item', projectItem.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon [icon]="'pencil-alt'"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
-                            <button type="submit"
+                            <button *jhiHasWritePermission="project.id" type="submit"
                                     [routerLink]="['/', { outlets: { popup: 'project-item/'+ projectItem.id + '/delete'} }]"
                                     replaceUrl="true"
                                      queryParamsHandling="merge"
@@ -64,7 +64,7 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasWritePermission="project.id" type="button"
                     [routerLink]="['/project', project.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>

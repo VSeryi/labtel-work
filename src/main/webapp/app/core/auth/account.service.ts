@@ -16,4 +16,8 @@ export class AccountService {
     save(account: any): Observable<HttpResponse<any>> {
         return this.http.post(SERVER_API_URL + 'api/account', account, { observe: 'response' });
     }
+
+    permissions(): Observable<HttpResponse<any>> {
+        return this.http.get<any[]>(`api/project-permissions/me`, { observe: 'response' });
+    }
 }

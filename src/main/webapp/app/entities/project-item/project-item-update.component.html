@@ -26,7 +26,7 @@
                         </div>
                         <div class="col mt-auto">
 
-                                <button type="button"
+                                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
                                 [routerLink]="['/item', 'individual', 'new' ]"
                                 class="btn btn-primary">
                             <span class="d-none d-md-inline">Create Component</span>

@@ -4,7 +4,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
 
-import { IItem } from 'app/shared/model/item.model';
+import { IItem, TypeItem } from 'app/shared/model/item.model';
 import { ItemService } from './item.service';
 import { ICategory } from 'app/shared/model/category.model';
 import { CategoryService } from 'app/entities/category';
@@ -20,6 +20,7 @@ export class ItemUpdateComponent implements OnInit {
     categories: ICategory[];
 
     items: IItem[];
+    type: string;
 
     constructor(
         private jhiAlertService: JhiAlertService,
@@ -30,9 +31,19 @@ export class ItemUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ item }) => {
-            this.item = item;
+        this.activatedRoute.data.subscribe(data => {
+            this.item = data.item;
+            this.type = data.type;
+
+            if (this.type) {
+                if (this.type === 'INDIVIDUAL') {
+                    this.item.type = TypeItem['INDIVIDUAL'];
+                } else {
+                    this.item.type = TypeItem['GROUP'];
+                }
+            }
         });
+
         this.categoryService.query().subscribe(
             (res: HttpResponse<ICategory[]>) => {
                 this.categories = res.body;

@@ -3,6 +3,7 @@ package es.urjc.etsii.labtel.service.dto;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the Project entity.
@@ -13,7 +14,7 @@ public class ProjectDTO implements Serializable {
 
     private String value;
     
-    private List<ProjectItemDTO> items;
+    private Set<ProjectItemDTO> items;
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class ProjectDTO implements Serializable {
         this.value = value;
     }
 
-    public List<ProjectItemDTO> getItems() {
+    public Set<ProjectItemDTO> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ProjectItemDTO> items) {
+	public void setItems(Set<ProjectItemDTO> items) {
 		this.items = items;
 	}
 

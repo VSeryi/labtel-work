@@ -72,6 +72,18 @@ public class ProjectItemService {
         return projectItemRepository.findById(id)
             .map(projectItemMapper::toDto);
     }
+    
+    /**
+     * Get one projectItem by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public Optional<ProjectItem> findOneNoDTO(Long id) {
+        log.debug("Request to get ProjectItem : {}", id);
+        return projectItemRepository.findById(id);
+    }
 
     /**
      * Delete the projectItem by id.
@@ -80,11 +92,17 @@ public class ProjectItemService {
      */
     public void delete(Long id) {
         log.debug("Request to delete ProjectItem : {}", id);
+        Optional<ProjectItem> p = findOneNoDTO(id);
+        if(p.isPresent())
+        	removeToProject(findOneNoDTO(id).get());
         projectItemRepository.deleteById(id);
     }
     
     private void addToProject(ProjectItem projectItem) {
     	projectItem.getProject().addItem(projectItem);
-    	
+    }
+    
+    private void removeToProject(ProjectItem projectItem) {
+    	projectItem.getProject().removeItem(projectItem);
     }
 }

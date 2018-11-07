@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" name="value" id="field_value"
                         [(ngModel)]="item.value" />
                 </div>
-                <div class="form-group">
+                <div class="form-group" [hidden]="type">
                     <label class="form-control-label" jhiTranslate="labtelApp.item.type" for="field_type">Type</label>
                     <select class="form-control" name="type" [(ngModel)]="item.type" id="field_type" >
                         <option value="INDIVIDUAL">{{'labtelApp.TypeItem.INDIVIDUAL' | translate}}</option>
@@ -29,7 +29,7 @@
                         <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [hidden]="type && type === 'INDIVIDUAL'">
                     <label jhiTranslate="labtelApp.item.element" for="field_element">Element</label>
                     <select class="form-control" id="field_element" multiple name="element" [(ngModel)]="item.elements">
                         <option [ngValue]="getSelected(item.elements, itemOption)" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.value}}</option>

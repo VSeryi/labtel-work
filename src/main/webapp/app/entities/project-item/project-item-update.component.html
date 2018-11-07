@@ -16,11 +16,28 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labtelApp.projectItem.item" for="field_item">Item</label>
-                    <select class="form-control" id="field_item" name="item" [(ngModel)]="projectItem.itemId" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.value}}</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-8">
+                                <label class="form-control-label" jhiTranslate="labtelApp.projectItem.item" for="field_item">Item</label>
+                                <select class="form-control" id="field_item" name="item" [(ngModel)]="projectItem.itemId" >
+                                    <option [ngValue]="null"></option>
+                                    <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.value}}</option>
+                                </select>
+                        </div>
+                        <div class="col mt-auto">
+
+                                <button type="button"
+                                [routerLink]="['/item', 'individual', 'new' ]"
+                                class="btn btn-primary">
+                            <span class="d-none d-md-inline">Create Component</span>
+                        </button>
+                        <button type="button"
+                        [routerLink]="['/item', 'group', 'new' ]"
+                        class="btn btn-primary">
+                    <span class="d-none d-md-inline">Create List</span>
+                </button>
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labtelApp.projectItem.project" for="field_project">Project</label>

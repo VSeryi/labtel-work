@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="labtelApp.item.home.title">Items</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-item" [routerLink]="['/item/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-item" [routerLink]="['/item', type.toLowerCase(), 'new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="labtelApp.item.home.createLabel">
             Create new Item
@@ -16,7 +16,6 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="value"><span jhiTranslate="labtelApp.item.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="type"><span jhiTranslate="labtelApp.item.type">Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoryName"><span jhiTranslate="labtelApp.item.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -39,7 +38,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/item', item.id, 'edit']"
+                                [routerLink]="['/item', type.toLowerCase(), item.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>

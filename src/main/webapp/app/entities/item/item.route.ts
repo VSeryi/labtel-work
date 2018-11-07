@@ -96,6 +96,32 @@ export const itemRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
+        path: 'item/individual/new',
+        component: ItemUpdateComponent,
+        resolve: {
+            item: ItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.item.home.title',
+            type: 'INDIVIDUAL'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'item/group/new',
+        component: ItemUpdateComponent,
+        resolve: {
+            item: ItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.item.home.title',
+            type: 'GROUP'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'item/:id/edit',
         component: ItemUpdateComponent,
         resolve: {
@@ -104,6 +130,32 @@ export const itemRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'labtelApp.item.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'item/individual/:id/edit',
+        component: ItemUpdateComponent,
+        resolve: {
+            item: ItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.item.home.title',
+            type: 'INDIVIDUAL'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'item/group/:id/edit',
+        component: ItemUpdateComponent,
+        resolve: {
+            item: ItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'labtelApp.item.home.title',
+            type: 'GROUP'
         },
         canActivate: [UserRouteAccessService]
     }

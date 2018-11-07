@@ -1,0 +1,24 @@
+{
+    "labtelApp": {
+        "projectPermission": {
+            "home": {
+                "title": "Project Permissions",
+                "createLabel": "Create a new Project Permission",
+                "createOrEditLabel": "Create or edit a Project Permission",
+                "search": "Search for Project Permission"
+            },
+            "created": "A new Project Permission is created with identifier {{ param }}",
+            "updated": "A Project Permission is updated with identifier {{ param }}",
+            "deleted": "A Project Permission is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Project Permission {{ id }}?"
+            },
+            "detail": {
+                "title": "Project Permission"
+            },
+            "permission": "Permission",
+            "user": "User",
+            "project": "Project"
+        }
+    }
+}

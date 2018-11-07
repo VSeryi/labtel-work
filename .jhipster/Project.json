@@ -1,0 +1,28 @@
+{
+    "name": "Project",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "item",
+            "otherEntityName": "projectItem",
+            "otherEntityRelationshipName": "project"
+        }
+    ],
+    "changelogDate": "20181107024424",
+    "entityTableName": "project",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "labtel"
+    ]
+}

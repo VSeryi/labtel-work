@@ -1,0 +1,24 @@
+{
+    "labtelApp": {
+        "projectItem": {
+            "home": {
+                "title": "Project Items",
+                "createLabel": "Crear nuevo Project Item",
+                "createOrEditLabel": "Crear o editar Project Item",
+                "search": "Search for Project Item"
+            },
+            "created": "Un nuevo Project Item ha sido creado con el identificador {{ param }}",
+            "updated": "Un Project Item ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Project Item ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Project Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Project Item"
+            },
+            "quantity": "Quantity",
+            "item": "Item",
+            "project": "Project"
+        }
+    }
+}

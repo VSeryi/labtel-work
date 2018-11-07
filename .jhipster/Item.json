@@ -1,0 +1,41 @@
+{
+    "name": "Item",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TypeItem",
+            "fieldValues": "INDIVIDUAL,GROUP"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "element",
+            "otherEntityName": "item",
+            "otherEntityField": "value",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20181107024422",
+    "entityTableName": "item",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "labtel"
+    ]
+}
